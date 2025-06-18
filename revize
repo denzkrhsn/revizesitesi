@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Revizeli Çalışma Testi</title>
   <style>
     body {
@@ -31,7 +31,6 @@
       cursor: pointer;
     }
 
-    /* Ensure the evasive button can freely move */
     #hayir {
       position: absolute;
     }
@@ -48,7 +47,6 @@
     const hayirBtn = document.getElementById("hayir");
     const evetBtn = document.getElementById("evet");
 
-    // Move the "hayır" button to a random spot within the viewport
     function moveHayir() {
       const maxX = window.innerWidth - hayirBtn.offsetWidth;
       const maxY = window.innerHeight - hayirBtn.offsetHeight;
@@ -58,22 +56,17 @@
       hayirBtn.style.top = `${randY}px`;
     }
 
-    // Re‑position on hover *before* the user can click
     hayirBtn.addEventListener("mouseenter", moveHayir);
-
-    // Just in case the user somehow manages to click, prevent action
     hayirBtn.addEventListener("click", (e) => {
       e.preventDefault();
       moveHayir();
     });
 
-    // Positive response behaviour
     evetBtn.addEventListener("click", () => {
       document.body.innerHTML =
         '<h1 style="font-family: Arial, Helvetica, sans-serif; text-align:center; margin-top:40vh; font-size:3rem;">ZATEN REVİZELİSİN :)</h1>';
     });
 
-    // Initial random placement so it doesn't start right next to "evet"
     moveHayir();
   </script>
 </body>
