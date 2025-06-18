@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revizeli Çalışma Testi</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #wrap {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 0.6rem 2rem;
+      margin: 0 1rem;
+      cursor: pointer;
+    }
+
+    /* Ensure the evasive button can freely move */
+    #hayir {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <h1>Revizeli çalışmak ister misin?</h1>
+    <button id="evet">evet</button>
+    <button id="hayir">hayır</button>
+  </div>
+
+  <script>
+    const hayirBtn = document.getElementById("hayir");
+    const evetBtn = document.getElementById("evet");
+
+    // Move the "hayır" button to a random spot within the viewport
+    function moveHayir() {
+      const maxX = window.innerWidth - hayirBtn.offsetWidth;
+      const maxY = window.innerHeight - hayirBtn.offsetHeight;
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
+      hayirBtn.style.left = `${randX}px`;
+      hayirBtn.style.top = `${randY}px`;
+    }
+
+    // Re‑position on hover *before* the user can click
+    hayirBtn.addEventListener("mouseenter", moveHayir);
+
+    // Just in case the user somehow manages to click, prevent action
+    hayirBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveHayir();
+    });
+
+    // Positive response behaviour
+    evetBtn.addEventListener("click", () => {
+      document.body.innerHTML =
+        '<h1 style="font-family: Arial, Helvetica, sans-serif; text-align:center; margin-top:40vh; font-size:3rem;">ZATEN REVİZELİSİN :)</h1>';
+    });
+
+    // Initial random placement so it doesn't start right next to "evet"
+    moveHayir();
+  </script>
+</body>
+</html>
